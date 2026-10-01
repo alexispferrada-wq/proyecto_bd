@@ -74,17 +74,31 @@ WSGI_APPLICATION = 'Proyecto_BD.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME', 'bd_productos'),
-        'USER': os.environ.get('DB_USER', 'django'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'django123'),
-        'HOST': os.environ.get('DB_HOST', 'db'),
-        'PORT': os.environ.get('DB_PORT', '3306'),
-        'OPTIONS': {'charset': 'utf8mb4'},
+# Soporte tanto para Docker (MySQL) como para ejecucion local sin Docker (SQLite o MySQL)
+USE_SQLITE = os.environ.get("USE_SQLITE", "").lower() in ("1", "true", "yes")
+DB_HOST = os.environ.get("DB_HOST")
+
+if USE_SQLITE or not DB_HOST:
+    # Opcion local sin Docker (SQLite integrado)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    # Opcion con Docker o MySQL remoto/local
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.environ.get("DB_NAME", "bd_productos"),
+            "USER": os.environ.get("DB_USER", "django"),
+            "PASSWORD": os.environ.get("DB_PASSWORD", "django123"),
+            "HOST": DB_HOST,
+            "PORT": os.environ.get("DB_PORT", "3306"),
+            "OPTIONS": {"charset": "utf8mb4"},
+        }
+    }
 
 
 # Password validation
