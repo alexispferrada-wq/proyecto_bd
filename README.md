@@ -7,11 +7,20 @@ Proyecto Django preparado para funcionar tanto con **Docker** (Django + MySQL + 
 
 ## 📚 Material de Estudio para la Interrogación (30 Puntos)
 
-Para preparar la interrogación oral con el docente, en este mismo repositorio se incluye:
-- **📄 [GUIA_ESTUDIO_INTERROGACION.pdf](GUIA_ESTUDIO_INTERROGACION.pdf)** *(Documento PDF listo para imprimir o descargar)*
-- **📝 [GUIA_ESTUDIO_INTERROGACION.md](GUIA_ESTUDIO_INTERROGACION.md)** *(Versión en Markdown para lectura rápida en GitHub)*
+Para preparar la interrogación oral con el docente, en este repositorio se incluyen 2 guías completas:
 
-Contiene el desglose archivo por archivo (`settings.py`, `urls.py`, `models.py`, `views.py`), arquitectura MVT, seguridad (CSRF y `@login_required`) y un **simulacro con las 10 preguntas clave del docente**.
+1. **🗺️ [DIAGRAMAS_Y_FLUJO_VISUAL.pdf](DIAGRAMAS_Y_FLUJO_VISUAL.pdf)** *(Recomendado: Guía visual y espacial)*  
+   - Diagrama de flujo de peticiones MVT en Django.
+   - Diagrama Entidad-Relación (DER) de las tablas `auth_user` y `productos_producto`.
+   - Diagrama de Clases UML del sistema.
+   - Mapa mental de navegación de pantallas (Sitemap con código de colores).
+   - Diagrama de infraestructura de contenedores Docker vs modo local.
+   - *(También disponible en Markdown interactivo: [DIAGRAMAS_Y_FLUJO_VISUAL.md](DIAGRAMAS_Y_FLUJO_VISUAL.md))*.
+
+2. **📄 [GUIA_ESTUDIO_INTERROGACION.pdf](GUIA_ESTUDIO_INTERROGACION.pdf)** *(Guía teórica y técnica)*  
+   - Análisis detallado archivo por archivo (`settings.py`, `urls.py`, `models.py`, `views.py`).
+   - Simulacro de examen con las 10 preguntas clave y respuestas exactas del docente.
+   - *(También disponible en Markdown: [GUIA_ESTUDIO_INTERROGACION.md](GUIA_ESTUDIO_INTERROGACION.md))*.
 
 ---
 
