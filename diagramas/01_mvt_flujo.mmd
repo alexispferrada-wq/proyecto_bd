@@ -1,0 +1,23 @@
+sequenceDiagram
+    autonumber
+    actor User as 🌐 Usuario (Navegador)
+    participant URL as 🧭 urls.py
+    participant View as ⚙️ views.py
+    participant Auth as 🛡️ @login_required
+    participant Model as 📦 models.py (ORM)
+    participant DB as 🗄️ Base de Datos
+    participant HTML as 📄 Template (HTML)
+
+    User->>URL: Clic en enlace (ej: /listado)
+    URL->>View: Encamina a mostrarListado()
+    View->>Auth: Verifica si tiene sesión activa
+    alt No autenticado
+        Auth-->>User: Redirige a /login
+    else Autenticado
+        View->>Model: Producto.objects.all()
+        Model->>DB: SELECT * FROM productos_producto
+        DB-->>Model: Retorna registros
+        Model-->>View: QuerySet de Productos
+        View->>HTML: Inyecta {'productos': productos}
+        HTML-->>User: Devuelve página con tabla y Bootstrap
+    end

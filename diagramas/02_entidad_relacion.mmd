@@ -1,0 +1,17 @@
+erDiagram
+    AUTH_USER ||--o{ PRODUCTOS_PRODUCTO : "administra"
+
+    AUTH_USER {
+        bigint id PK
+        varchar username UK
+        varchar password "Hash PBKDF2"
+        boolean is_superuser
+        datetime last_login
+    }
+
+    PRODUCTOS_PRODUCTO {
+        bigint id PK
+        text nombre "Nombre del Producto"
+        text marca "A cuenta, Jumbo, Lider"
+        int precio "Precio en CLP"
+    }

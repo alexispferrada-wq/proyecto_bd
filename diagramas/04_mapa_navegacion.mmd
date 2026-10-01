@@ -1,0 +1,19 @@
+flowchart TD
+    Login["🔐 /login o /registro<br><b>Pantalla de Entrada</b>"] -->|Autenticación Correcta| Index["🏠 /<br><b>Menú Principal</b>"]
+    
+    Index -->|Clic en Registrar Producto| FormReg["➕ /form_registrar<br><b>Formulario Nuevo Producto</b>"]
+    FormReg -->|POST /registrar| Listado["📋 /listado<br><b>Tabla CRUD de Productos</b>"]
+
+    Index -->|Clic en Ver Listado| Listado
+    
+    Listado -->|Clic en ✏️ Editar| FormAct["✏️ /form_actualizar/:id<br><b>Editar Producto</b>"]
+    FormAct -->|POST /actualizar/:id| Listado
+    
+    Listado -->|Clic en 🗑️ Eliminar + Confirma JS| Eliminar["🗑️ /eliminar/:id<br><b>Borra registro en BD</b>"]
+    Eliminar --> Listado
+
+    Listado -->|Volver| Index
+    FormReg -->|Volver| Index
+
+    Index -->|Clic en Cerrar Sesión| Logout["🚪 POST /logout"]
+    Logout --> Login
