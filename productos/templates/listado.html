@@ -1,65 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Listado</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Listado de Productos - Proyecto BD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-        <script>
-            const botonEliminar = (id) => {
-                if(window.confirm("¿Está Seguro De Querer Eliminar El Registro?")){
-                    window.location.href = "/eliminar/" + id;
-                }
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .table-card {
+            max-width: 900px;
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background-color: #ffffff;
+        }
+    </style>
+
+    <script>
+        const botonEliminar = (id, nombre) => {
+            if (window.confirm(`¿Está seguro de querer eliminar el producto "${nombre}" (ID: ${id})?`)) {
+                window.location.href = "/eliminar/" + id;
             }
-        </script>
+        }
+    </script>
+</head>
+<body class="d-flex align-items-center justify-content-center min-vh-100 py-4">
 
-    </head>
-    <body>
+    <div class="table-card p-4 p-md-5 my-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags|default:'success' }} alert-dismissible fade show small d-flex align-items-center mb-3" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    <div>{{ message }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-        <div class="container text-center">
-            <h1>Listado de Productos</h1>
-            <h4><a href="/">Volver al Index</a></h4>
-
-
-            <table border="1" class="table table-hover">
-                <tr bgcolor="lightgray">
-                    <th>ID</th>
-                    <th>NOMBRE</th>
-                    <th>MARCA</th>
-                    <th>PRECIO</th>
-                    <th>EDITAR</th>
-                    <th>ELIMINAR</th>
-                </tr>
-
-                {% for p in productos %}
-                <tr class="align-middle">
-                    <td>{{ p.id }}</td>
-                    <td>{{ p.nombre }}</td>
-                    <td>{{ p.marca }}</td>
-                    <td>{{ p.precio }}</td>
-                    <td>
-                        <a href="/form_actualizar/{{ p.id }}" class="btn btn-lg">
-                            <i class="bi bi-pencil-fill"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <button type="button" onClick="botonEliminar({{ p.id }})" class="btn btn-lg">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </td>
-                </tr>
-                {% empty %}
-                <tr><td colspan="6">No hay productos registrados</td></tr>
-                {% endfor %}
-
-            </table>
-
-
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-4">
+            <div>
+                <h2 class="fw-bold mb-0">
+                    <i class="bi bi-table text-primary me-2"></i>Listado de Productos
+                </h2>
+                <small class="text-muted">Operaciones CRUD en la Base de Datos</small>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="/" class="btn btn-outline-secondary">
+                    <i class="bi bi-house me-1"></i> Menú
+                </a>
+                <a href="/form_registrar" class="btn btn-primary">
+                    <i class="bi bi-plus-lg me-1"></i> Nuevo Producto
+                </a>
+            </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    </body>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-center" style="width: 70px;">ID</th>
+                        <th>NOMBRE</th>
+                        <th>MARCA</th>
+                        <th class="text-end">PRECIO</th>
+                        <th class="text-center" style="width: 90px;">EDITAR</th>
+                        <th class="text-center" style="width: 90px;">ELIMINAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in productos %}
+                    <tr>
+                        <td class="text-center text-muted fw-bold">#{{ p.id }}</td>
+                        <td class="fw-semibold">{{ p.nombre }}</td>
+                        <td>
+                            <span class="badge bg-light text-dark border">{{ p.marca }}</span>
+                        </td>
+                        <td class="text-end fw-bold text-success">${{ p.precio }}</td>
+                        <td class="text-center">
+                            <a href="/form_actualizar/{{ p.id }}" class="btn btn-sm btn-outline-primary" title="Editar Producto">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <button type="button" onClick="botonEliminar({{ p.id }}, '{{ p.nombre|escapejs }}')" class="btn btn-sm btn-outline-danger" title="Eliminar Producto">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">
+                            <i class="bi bi-inbox fs-1 d-block mb-2 text-secondary"></i>
+                            <p class="mb-2">No hay productos registrados actualmente.</p>
+                            <a href="/form_registrar" class="btn btn-sm btn-primary">
+                                <i class="bi bi-plus-lg me-1"></i> Agregar el primero
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
