@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Guía de Estudio para Interrogación - Proyecto BD (Django)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 15mm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #212529;
+            line-height: 1.5;
+            font-size: 13px;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            border-bottom: 3px solid #0d6efd;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .header h1 {
+            color: #0b3d91;
+            margin: 0;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .header .meta {
+            font-size: 11px;
+            color: #6c757d;
+            text-align: right;
+        }
+        .meta-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 12px;
+        }
+        .meta-box table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .meta-box td {
+            padding: 3px 0;
+        }
+        .meta-box td.label {
+            font-weight: bold;
+            color: #495057;
+            width: 130px;
+        }
+        h2 {
+            color: #0d6efd;
+            font-size: 16px;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 6px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            page-break-after: avoid;
+        }
+        h3 {
+            color: #198754;
+            font-size: 14px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            page-break-after: avoid;
+        }
+        p {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 12px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+        code {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            background-color: #f1f3f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 11.5px;
+            color: #d63384;
+        }
+        pre {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            overflow-x: auto;
+            margin-top: 6px;
+            margin-bottom: 14px;
+            line-height: 1.4;
+            page-break-inside: avoid;
+        }
+        .card {
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 14px;
+            background: #ffffff;
+            page-break-inside: avoid;
+        }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #0d6efd;
+        }
+        .badge-success { background-color: #198754; }
+        .badge-warning { background-color: #ffc107; color: #000; }
+        .badge-danger { background-color: #dc3545; }
+        .alert-tip {
+            background-color: #e7f5ff;
+            border-left: 4px solid #339af0;
+            padding: 10px 14px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+            font-size: 12px;
+            page-break-inside: avoid;
+        }
+        .alert-exam {
+            background-color: #fff4e6;
+            border-left: 4px solid #fd7e14;
+            padding: 10px 14px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+            font-size: 12px;
+            page-break-inside: avoid;
+        }
+        .qa-item {
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #ced4da;
+            page-break-inside: avoid;
+        }
+        .qa-q {
+            font-weight: bold;
+            color: #0b3d91;
+            margin-bottom: 4px;
+        }
+        .qa-a {
+            color: #333;
+            margin-left: 10px;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        table.data-table th, table.data-table td {
+            border: 1px solid #dee2e6;
+            padding: 6px 10px;
+            text-align: left;
+        }
+        table.data-table th {
+            background-color: #f1f3f5;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div>
+            <h1>GUÍA DE ESTUDIO E INTERROGACIÓN</h1>
+            <div style="font-size: 14px; font-weight: 600; color: #495057;">Evaluación Sumativa N° 2 — Programación Back End</div>
+        </div>
+        <div class="meta">
+            INACAP Sede Maipú<br>
+            Primavera 2026
+        </div>
+    </div>
+
+    <div class="meta-box">
+        <table>
+            <tr>
+                <td class="label">Asignatura:</td>
+                <td>Programación Back End (TI3V41 / V-FB50)</td>
+                <td class="label">Estudiante:</td>
+                <td>Alexis Ferrada</td>
+            </tr>
+            <tr>
+                <td class="label">Docente:</td>
+                <td>Javier Eduardo Gutiérrez Osorio</td>
+                <td class="label">Puntaje Interrogación:</td>
+                <td><strong>30 puntos</strong> (Ponderación total: 35%)</td>
+            </tr>
+            <tr>
+                <td class="label">Proyecto:</td>
+                <td><strong>Proyecto_BD</strong> (Django 5.2 + MySQL / SQLite + Docker)</td>
+                <td class="label">Repositorio GitHub:</td>
+                <td>github.com/alexispferrada-wq/proyecto_bd</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>1. Arquitectura General del Proyecto (Patrón MVT)</h2>
+    <p>Django implementa el patrón de arquitectura <strong>MVT (Model - View - Template)</strong>, una variante del clásico MVC (Model-View-Controller):</p>
+    <ul>
+        <li><strong>Modelo (<code>models.py</code>):</strong> Capa de datos. Define la estructura de las tablas mediante clases Python y el ORM. Maneja la comunicación con la base de datos sin escribir SQL manual.</li>
+        <li><strong>Vista (<code>views.py</code>):</strong> Capa de lógica de negocio. Recibe una solicitud HTTP (<code>request</code>), interactúa con los modelos para leer o guardar datos y devuelve una respuesta HTTP (renderizando un template o redirigiendo).</li>
+        <li><strong>Plantilla (<code>templates/*.html</code>):</strong> Capa de presentación visual. Contiene HTML con etiquetas de plantilla Django (<code>{{ }}</code>, <code>{% %}</code>) y estilos Bootstrap.</li>
+        <li><strong>Enrutador (<code>urls.py</code>):</strong> Actúa como despachador. Analiza la URL solicitada en el navegador y deriva la ejecución a la función de vista correspondiente.</li>
+    </ul>
+
+    <div class="alert-tip">
+        <strong>Diagrama de Flujo de una Petición en Proyecto_BD:</strong><br>
+        <code>Usuario Navegador</code> ➔ <code>urls.py</code> ➔ <code>views.py</code> ➔ <code>models.py (ORM)</code> ➔ <code>Base de Datos (MySQL/SQLite)</code> ➔ <code>Template (HTML)</code> ➔ <code>Navegador (Pantalla)</code>
+    </div>
+
+    <h2>2. Desglose Archivo por Archivo</h2>
+
+    <h3>2.1. <code>Proyecto_BD/settings.py</code> (El Cerebro de Configuración)</h3>
+    <p>Este archivo centraliza todas las variables y directivas operativas de Django:</p>
+    <ul>
+        <li><strong><code>INSTALLED_APPS</code>:</strong> Lista todas las aplicaciones activas. Incluye los módulos nativos (<code>django.contrib.auth</code> para usuarios, <code>django.contrib.messages</code> para alertas) y nuestra aplicación personalizada <code>'productos'</code>.</li>
+        <li><strong><code>DATABASES</code> (Soporte Dual Inteligente):</strong>
+            <pre>USE_SQLITE = os.environ.get("USE_SQLITE", "").lower() in ("1", "true", "yes")
+DB_HOST = os.environ.get("DB_HOST")
+
+if USE_SQLITE or not DB_HOST:
+    # Opción A: Local sin Docker -> SQLite3 automático (db.sqlite3)
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}}
+else:
+    # Opción B: Con Docker -> MySQL 8.0 (contenedor proyecto_bd_mysql)
+    DATABASES = {'default': {'ENGINE': 'django.db.backends.mysql', 'NAME': 'bd_productos', ...}}</pre>
+            <em>¿Por qué se hizo así?</em> Cumple tanto con la recomendación del profesor (usar SQLite3 para facilidad) como con el despliegue profesional contenerizado en Docker con MySQL 8.0.
+        </li>
+        <li><strong><code>LOGIN_URL = '/login'</code>:</strong> Indica a Django a qué ruta redirigir automáticamente si un usuario no autenticado intenta ingresar a cualquier vista protegida por <code>@login_required</code>.</li>
+        <li><strong><code>TIME_ZONE = 'America/Santiago'</code> y <code>LANGUAGE_CODE = 'es-cl'</code>:</strong> Configura la zona horaria oficial chilena y el idioma español de Chile.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h3>2.2. <code>Proyecto_BD/urls.py</code> (El Enrutador Central)</h3>
+    <p>Contiene la lista <code>urlpatterns</code> con todas las rutas URL del sistema:</p>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Ruta (URL)</th>
+                <th>Vista Asociada</th>
+                <th>Acción / Requerimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>/admin/</code></td>
+                <td><code>admin.site.urls</code></td>
+                <td>Panel de administración gráfico oficial de Django.</td>
+            </tr>
+            <tr>
+                <td><code>/login</code></td>
+                <td><code>auth_views.LoginView</code></td>
+                <td><strong>Etapa 1:</strong> Autentica credenciales contra la BD.</td>
+            </tr>
+            <tr>
+                <td><code>/logout</code></td>
+                <td><code>auth_views.LogoutView</code></td>
+                <td>Cierra la sesión del usuario y redirige al login.</td>
+            </tr>
+            <tr>
+                <td><code>/registro</code></td>
+                <td><code>views.registrarUsuario</code></td>
+                <td><strong>Etapa 3:</strong> Formulario de nuevo usuario integrado con hash en BD.</td>
+            </tr>
+            <tr>
+                <td><code>/</code></td>
+                <td><code>views.mostrarIndex</code></td>
+                <td>Menú principal con accesos y estadísticas.</td>
+            </tr>
+            <tr>
+                <td><code>/form_registrar</code></td>
+                <td><code>views.mostrarFormRegistrar</code></td>
+                <td><strong>CRUD (Create):</strong> Muestra formulario vacío de producto.</td>
+            </tr>
+            <tr>
+                <td><code>/registrar</code></td>
+                <td><code>views.registrarProducto</code></td>
+                <td><strong>CRUD (Create):</strong> Recibe POST e inserta en la BD.</td>
+            </tr>
+            <tr>
+                <td><code>/listado</code></td>
+                <td><code>views.mostrarListado</code></td>
+                <td><strong>CRUD (Read):</strong> Muestra tabla con todos los productos.</td>
+            </tr>
+            <tr>
+                <td><code>/form_actualizar/&lt;int:id&gt;</code></td>
+                <td><code>views.mostrarFormActualizar</code></td>
+                <td><strong>CRUD (Update):</strong> Carga formulario con datos del ID.</td>
+            </tr>
+            <tr>
+                <td><code>/actualizar/&lt;int:id&gt;</code></td>
+                <td><code>views.actualizarProducto</code></td>
+                <td><strong>CRUD (Update):</strong> Guarda cambios en el ID indicado.</td>
+            </tr>
+            <tr>
+                <td><code>/eliminar/&lt;int:id&gt;</code></td>
+                <td><code>views.eliminarProducto</code></td>
+                <td><strong>CRUD (Delete):</strong> Borra registro por su ID.</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><em>Parámetro dinámico <code>&lt;int:id&gt;</code>:</em> Le indica a Django que capturará un valor numérico de la URL y lo pasará como segundo argumento a la función de la vista.</p>
+
+    <h3>2.3. <code>productos/models.py</code> (El Modelo de Datos)</h3>
+    <pre>class Producto(models.Model):
+    nombre = models.TextField(max_length=100)
+    marca = models.TextField(max_length=100)
+    precio = models.IntegerField(null=False)
+
+    def __str__(self):
+        return f"{self.nombre} ({self.marca}) - ${self.precio}"</pre>
+    <ul>
+        <li><strong>Herencia de <code>models.Model</code>:</strong> Le da a la clase todas las capacidades del ORM de Django para mapearse a una tabla en la base de datos (por defecto llamada <code>productos_producto</code>).</li>
+        <li><strong>Clave Primaria (<code>id</code>):</strong> No se declara manualmente; Django crea automáticamente una columna <code>id BIGINT AUTO_INCREMENT PRIMARY KEY</code>.</li>
+        <li><strong>Campos:</strong> <code>nombre</code>, <code>marca</code> y <code>precio</code> (los 4 atributos exactos exigidos en la Etapa 2 de la pauta).</li>
+        <li><strong>Método <code>__str__</code>:</strong> Representación legible en texto para cuando el objeto se visualiza en consola o en el panel de administración.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h3>2.4. <code>productos/views.py</code> (Lógica de Negocio y Controladores)</h3>
+
+    <div class="card">
+        <strong>1. Decorador <code>@login_required</code> (Etapa 3 - Seguridad):</strong><br>
+        Se ubica arriba de cada vista del CRUD. Verifica si <code>request.user.is_authenticated</code> es verdadero. Si el usuario no ha iniciado sesión, detiene la ejecución y lo redirige automáticamente a <code>/login?next=/ruta_solicitada</code>.
+    </div>
+
+    <div class="card">
+        <strong>2. Registro de Usuarios (<code>registrarUsuario</code>):</strong>
+        <pre>def registrarUsuario(request):
+    if request.method == 'POST':
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '')
+        password_confirm = request.POST.get('password_confirm', '')
+
+        # Validaciones: campos obligatorios, coincidencia y usuario existente
+        if password != password_confirm:
+            return render(request, 'login.html', {'register_error': 'Las contraseñas no coinciden.'})
+        if User.objects.filter(username=username).exists():
+            return render(request, 'login.html', {'register_error': 'El usuario ya existe.'})
+
+        # User.objects.create_user encripta la clave con algoritmo PBKDF2 (SHA-256)
+        user = User.objects.create_user(username=username, password=password)
+        login(request, user)  # Inicia sesión en la cookie
+        return redirect('/')</pre>
+    </div>
+
+    <div class="card">
+        <strong>3. Operaciones CRUD Explicadas:</strong>
+        <ul>
+            <li><strong>READ (Listar):</strong>
+                <code>productos = Producto.objects.all().order_by('id')</code><br>
+                Genera la consulta <code>SELECT * FROM productos_producto ORDER BY id ASC</code> y pasa la lista al template en el diccionario de contexto <code>{'productos': productos}</code>.
+            </li>
+            <li><strong>CREATE (Registrar):</strong>
+                <code>Producto.objects.create(nombre=nombre, marca=marca, precio=int(precio))</code><br>
+                Equivale a <code>INSERT INTO productos_producto (nombre, marca, precio) VALUES (...)</code>. Luego usa <code>redirect('/listado')</code> para evitar duplicar el envío del formulario.
+            </li>
+            <li><strong>UPDATE (Actualizar):</strong>
+                <code>producto = get_object_or_404(Producto, id=id)</code> busca el registro. Si existe, actualiza sus propiedades (<code>producto.nombre = ...</code>) y ejecuta <code>producto.save()</code> (ejecutando un <code>UPDATE</code> en SQL).
+            </li>
+            <li><strong>DELETE (Eliminar):</strong>
+                <code>producto = get_object_or_404(Producto, id=id)</code> seguido de <code>producto.delete()</code> (ejecutando un <code>DELETE FROM productos_producto WHERE id = ...</code>).
+            </li>
+        </ul>
+    </div>
+
+    <h3>2.5. <code>productos/templates/</code> (Vistas y Seguridad en Formularios)</h3>
+    <ul>
+        <li><strong>Protección CSRF (<code>{% csrf_token %}</code>):</strong> Es una etiqueta obligatoria de Django dentro de cada formulario <code>POST</code>. Genera un token criptográfico único oculto. Al enviar el formulario, el middleware verifica que provenga legítimamente de nuestro sitio y no de un atacante externo (previene ataques de <em>Cross-Site Request Forgery</em>).</li>
+        <li><strong>Diseño Centrado (Bootstrap 5):</strong> Se aplicó la clase <code>d-flex align-items-center justify-content-center min-vh-100</code> para que todas las pantallas (login, formularios, tablas) queden perfectamente centradas tanto vertical como horizontalmente en cualquier monitor.</li>
+        <li><strong>Confirmación con JavaScript:</strong> En <code>listado.html</code>, el botón de eliminar invoca la función <code>botonEliminar(id, nombre)</code> que lanza un cuadro de diálogo nativo <code>window.confirm(...)</code> para prevenir eliminaciones accidentales.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h2>3. Preguntas Clave para la Interrogación (Simulacro Oral)</h2>
+    <p>El docente Javier Gutiérrez evaluará tu comprensión del código (30 puntos de la pauta). Aquí tienes las preguntas más probables y cómo responderlas de forma concisa y técnica:</p>
+
+    <div class="qa-item">
+        <div class="qa-q">1. ¿Qué es el ORM de Django y qué ventaja ofrece en este proyecto?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> Es el <em>Object-Relational Mapping</em>. Permite manipular la base de datos utilizando objetos y clases Python (como <code>Producto.objects.all()</code> o <code>.create()</code>) sin tener que escribir consultas SQL manuales. Esto previene inyecciones SQL y hace que el código funcione igual en SQLite o MySQL sin cambiar una sola línea de lógica.</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">2. ¿Cómo se protegió el acceso a las pantallas del CRUD para que nadie entre sin iniciar sesión?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> Utilicé el decorador <code>@login_required</code> importado de <code>django.contrib.auth.decorators</code> sobre cada función de vista en <code>views.py</code>. Si alguien intenta ingresar directamente por URL sin estar autenticado, Django intercepta la petición y lo redirige a <code>/login</code> gracias a la variable <code>LOGIN_URL</code> configurada en <code>settings.py</code>.</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">3. ¿Para qué sirve la etiqueta <code>{% csrf_token %}</code> en los formularios?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> Genera un token de seguridad único para prevenir ataques CSRF (Cross-Site Request Forgery). Django exige este token en todas las solicitudes POST; si una petición llega sin este token válido, Django la bloquea con un error 403 Forbidden.</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">4. ¿Cuál es la diferencia entre <code>render()</code> y <code>redirect()</code> en una vista?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> <code>render()</code> procesa una plantilla HTML inyectándole variables de contexto y devuelve el contenido en la misma petición (usado para mostrar formularios o listas). <code>redirect()</code> envía una respuesta HTTP 302 al navegador para que haga una nueva solicitud GET a otra URL (usado después de guardar, editar o borrar para evitar reenvíos de formulario).</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">5. ¿Qué hace la función <code>get_object_or_404(Producto, id=id)</code>?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> Intenta obtener el registro del modelo <code>Producto</code> que coincida con el ID especificado. Si el ID no existe en la base de datos, en lugar de lanzar una excepción que tire el servidor, Django devuelve automáticamente una página de error HTTP 404 Not Found controlada.</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">6. ¿Cómo gestiona el proyecto las contraseñas de los usuarios para que no queden en texto plano?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> En la vista <code>registrarUsuario</code> se utiliza el método nativo <code>User.objects.create_user(username, password)</code>. Este método aplica automáticamente un algoritmo de derivación de claves basado en hash criptográfico (PBKDF2 con SHA-256 y sal), por lo que la contraseña nunca se guarda en texto claro en la tabla <code>auth_user</code>.</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">7. ¿Qué representan las migraciones en Django y para qué sirven?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> Son archivos Python (ubicados en la carpeta <code>migrations/</code>) que registran el historial de cambios en los modelos. El comando <code>makemigrations</code> detecta cambios en <code>models.py</code> y crea la receta; el comando <code>migrate</code> lee esa receta y ejecuta los comandos DDL (<code>CREATE TABLE</code>, <code>ALTER TABLE</code>) correspondientes en el motor de BD activo.</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">8. ¿Cómo lograste que el proyecto funcione tanto en Docker como en un PC sin Docker?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> En <code>settings.py</code> se evalúa la variable de entorno <code>DB_HOST</code>. Si está presente (como en Docker Compose donde <code>DB_HOST=db</code>), Django se conecta al contenedor de MySQL 8.0 mediante PyMySQL. Si no está presente, se activa el motor nativo <code>sqlite3</code>, permitiendo clonar y ejecutar el proyecto con un simple <code>python manage.py runserver</code> sin instalar motores pesados.</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">9. ¿Cómo se comunican los contenedores en Docker Compose?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> Docker Compose crea una red interna donde los contenedores se resuelven entre sí por el nombre del servicio. El servicio web usa el host <code>db</code> para llegar a MySQL en el puerto 3306. Además, se configuró un <code>healthcheck</code> en MySQL para que el contenedor web espere a que la base de datos esté lista antes de correr las migraciones.</div>
+    </div>
+
+    <div class="qa-item">
+        <div class="qa-q">10. ¿Por qué usamos <code>enctype</code> estándar o método POST en el registro de productos?</div>
+        <div class="qa-a"><strong>Respuesta:</strong> Usamos método <code>POST</code> porque estamos alterando el estado de la base de datos (creando o modificando registros). Enviar datos sensibles o de escritura por <code>GET</code> expondría los parámetros en la URL y en el historial del navegador.</div>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center; border-top: 2px solid #0d6efd; padding-top: 15px; font-size: 11px; color: #6c757d;">
+        <strong>Proyecto_BD — Documento oficial de preparación académica</strong><br>
+        Desarrollado para la Evaluación Sumativa N° 2 (35%) · INACAP Maipú · Primavera 2026
+    </div>
+
+</body>
+</html>

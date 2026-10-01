@@ -1,10 +1,21 @@
 # Proyecto_BD - Django (Docker o Local)
+**Evaluación Sumativa N° 2 (35%) — Programación Back End (INACAP Sede Maipú)**
 
 Proyecto Django preparado para funcionar tanto con **Docker** (Django + MySQL + phpMyAdmin) como en **entorno local directo con Python** (SQLite o MySQL).
 
 ---
 
-## 🚀 Opción 1: Ejecutar con Docker (Recomendado para producción/clon completo)
+## 📚 Material de Estudio para la Interrogación (30 Puntos)
+
+Para preparar la interrogación oral con el docente, en este mismo repositorio se incluye:
+- **📄 [GUIA_ESTUDIO_INTERROGACION.pdf](GUIA_ESTUDIO_INTERROGACION.pdf)** *(Documento PDF listo para imprimir o descargar)*
+- **📝 [GUIA_ESTUDIO_INTERROGACION.md](GUIA_ESTUDIO_INTERROGACION.md)** *(Versión en Markdown para lectura rápida en GitHub)*
+
+Contiene el desglose archivo por archivo (`settings.py`, `urls.py`, `models.py`, `views.py`), arquitectura MVT, seguridad (CSRF y `@login_required`) y un **simulacro con las 10 preguntas clave del docente**.
+
+---
+
+## 🚀 Opción 1: Ejecutar con Docker (Django + MySQL + phpMyAdmin)
 
 Incluye Python/Django, base de datos MySQL 8.0 y phpMyAdmin.
 
@@ -78,6 +89,3 @@ Si no tienes Docker instalado o prefieres correrlo directamente en tu máquina c
    python manage.py runserver
    ```
    Disponible en: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
-> **Nota para usar MySQL local sin Docker:**  
-> Si tienes un MySQL instalado en tu máquina, copia `.env.example` a `.env` o define las variables `DB_HOST=localhost`, `DB_USER=...`, `DB_PASSWORD=...`, `DB_NAME=bd_productos`.
