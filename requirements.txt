@@ -1,3 +1,4 @@
-Django>=5.2,<6.0
+Django>=5.2
 PyMySQL>=1.1
 cryptography>=42
+djangorestframework>=3.14

@@ -14,8 +14,10 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
+from rest_framework import permissions, viewsets
 
 from .models import Producto
+from .serializers import ProductoSerializer
 
 
 # ==============================================================================
@@ -167,3 +169,23 @@ def eliminarProducto(request, id):
     producto.delete()
     messages.success(request, f'Producto "{nombre}" eliminado con éxito.')
     return redirect('/listado')
+
+
+# ==============================================================================
+# 3. API REST FRAMEWORK (VIEWSET)
+# ==============================================================================
+
+class ProductoViewSet(viewsets.ModelViewSet):
+    """
+    ModelViewSet para el modelo Producto.
+    Proporciona automáticamente las acciones CRUD estándar para la API REST:
+    - GET /productos/         -> Listar todos los productos
+    - POST /productos/        -> Crear un nuevo producto
+    - GET /productos/{id}/    -> Obtener detalle de un producto
+    - PUT /productos/{id}/    -> Actualizar producto completamente
+    - PATCH /productos/{id}/  -> Actualizar producto parcialmente
+    - DELETE /productos/{id}/ -> Eliminar producto
+    """
+    queryset = Producto.objects.all().order_by('id')
+    serializer_class = ProductoSerializer
+    permission_classes = [permissions.AllowAny]

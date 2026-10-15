@@ -3,6 +3,10 @@
 
 Proyecto Django preparado para funcionar tanto con **Docker** (Django + MySQL + phpMyAdmin) como en **entorno local directo con Python** (SQLite o MySQL).
 
+## 🎥 Video Demostrativo de la API REST (Loom)
+**Video explicativo de la implementación y demostración en vivo (5m 45s):**  
+👉 **[Ver Video en Loom: Cómo funciona una API REST en Django](https://www.loom.com/share/c994d5cae93a4eada33c1ed61eb2328c)**
+
 ---
 
 ## 📚 Material de Estudio para la Interrogación (30 Puntos)
@@ -100,3 +104,27 @@ Si no tienes Docker instalado o prefieres correrlo directamente en tu máquina c
    python manage.py runserver
    ```
    Disponible en: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+---
+
+## ⚡ API RESTful con Django REST Framework (DRF)
+
+El proyecto incluye una API RESTful completa para el recurso `Producto` implementada con **Django REST Framework**.
+
+### 🔌 Endpoints Disponibles
+
+Ruta base: `http://127.0.0.1:8000/productos/` (y también `/api/productos/`)
+
+| Método HTTP | Endpoint | Descripción | Acción ViewSet |
+| :--- | :--- | :--- | :--- |
+| **GET** | `/productos/` | Listar todos los productos en formato JSON | `list()` |
+| **POST** | `/productos/` | Crear un nuevo producto | `create()` |
+| **GET** | `/productos/<id>/` | Obtener el detalle de un producto específico | `retrieve()` |
+| **PUT** | `/productos/<id>/` | Actualizar todos los campos de un producto | `update()` |
+| **PATCH** | `/productos/<id>/` | Actualizar parcialmente un producto | `partial_update()` |
+| **DELETE** | `/productos/<id>/` | Eliminar un producto | `destroy()` |
+
+### 🧪 Ejecutar Pruebas Automatizadas de la API
+```bash
+python manage.py test
+```

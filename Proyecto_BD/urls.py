@@ -6,9 +6,15 @@ encargadas de procesar la solicitud y devolver la respuesta.
 """
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
 
 from productos import views
+from productos.views import ProductoViewSet
+
+# Configuración del Router de Django REST Framework
+router = DefaultRouter()
+router.register('productos', ProductoViewSet, basename='producto')
 
 urlpatterns = [
     # 1. Panel de Administración de Django
@@ -39,4 +45,10 @@ urlpatterns = [
 
     # DELETE: Eliminar un producto por su clave primaria (ID)
     path('eliminar/<int:id>', views.eliminarProducto, name='eliminar'),
+
+    # 5. API REST con Django REST Framework (Etapa DRF INACAP)
+    # Probar en: http://127.0.0.1:8000/productos/
+    path('', include(router.urls)),
+    # Alternativa común: http://127.0.0.1:8000/api/productos/
+    path('api/', include(router.urls)),
 ]

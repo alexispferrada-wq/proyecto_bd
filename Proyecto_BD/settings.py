@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',       # Manejo de sesiones de usuario
     'django.contrib.messages',       # Framework de notificaciones flash (mensajes)
     'django.contrib.staticfiles',
+    # Django REST Framework
+    'rest_framework',
     # Aplicación propia del proyecto
     'productos',                     # CRUD y lógica de negocio de productos
 ]
